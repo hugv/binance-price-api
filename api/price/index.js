@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     // Validar que el símbolo exista y tenga precio
-    if (!data || !data.symbol || !data.price) {
+    if (!data.price) {
       return res.status(404).json({ error: "No se encontró el precio para el símbolo proporcionado" });
     }
 
