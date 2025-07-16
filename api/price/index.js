@@ -9,7 +9,8 @@ export default async function handler(req, res) {
     const response = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`);
     const data = await response.json();
 
-    if (!data.price) {
+    // Verificación más segura
+    if (!data || typeof data.price === "undefined") {
       return res.status(404).json({ error: "No se encontró el precio para el símbolo proporcionado" });
     }
 
